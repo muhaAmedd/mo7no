@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rawda!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 200vh; /* Enough height to allow scrolling */
+        }
+        
+        .heart {
+            position: fixed; /* fixed so hearts stay in place when scrolling */
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .message-box {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message-box:hover {
+            transform: scale(1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .cake {
+            animation: pulse 2s infinite alternate;
+            transform-origin: center;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="relative flex flex-col p-4"> <!-- Removed overflow-hidden and justify-between -->
+    
+    <!-- Floating hearts background -->
+    <div id="hearts-container"></div>
+    
+    <div class="flex-1 max-w-4xl w-full mx-auto text-center z-10">
+        <h1 class="title text-5xl md:text-6xl font-bold text-pink-600 mb-6">Happy Birthday Rawda!</h1>
+        
+        <div class="flex justify-center mb-8">
+            <div class="cake w-48 h-48 md:w-64 md:h-64 relative">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/20ac2a60-a604-4199-af70-1742faca11bf.png" 
+                     alt="Beautiful birthday cake" 
+                     class="w-full h-full object-contain rounded-full border-4 border-pink-300 shadow-lg">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="animate-bounce text-4xl text-yellow-400">🎂</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="message-box p-6 md:p-8 mb-8 max-w-lg mx-auto">
+            <p class="text-gray-700 text-lg md:text-xl mb-6">"from omar: love you bae anty ahla haga hsltly al sanady❤️"</p>
+            <p class="text-xl md:text-2xl font-medium text-purple-600 mb-4">Wishing you the happiest of birthdays!</p>
+            <p class="text-gray-600">May your day be filled with love, laughter, and all the happiness you bring to others.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                <div class="text-3xl text-pink-500 mb-2">❤️</div>
+                <p class="text-sm text-gray-600">Love</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                <div class="text-3xl text-blue-500 mb-2">😊</div>
+                <p class="text-sm text-gray-600">Happiness</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                <div class="text-3xl text-purple-500 mb-2">🎁</div>
+                <p class="text-sm text-gray-600">Gifts</p>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition">
+                <div class="text-3xl text-yellow-500 mb-2">🎉</div>
+                <p class="text-sm text-gray-600">Fun</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="py-4 text-center text-gray-500 text-sm z-10">
+        Powered by Mido ya wlad al shrmota
+    </footer>
+    
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const colors = ['#ff6b6b', '#ff8787', '#f06595', '#cc5de8', '#91a7ff'];
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                container.appendChild(heart);
+            }
+        }
+        
+        // Create confetti explosion
+        function createConfetti() {
+            const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '0px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                const animationDuration = Math.random() * 3 + 2;
+                confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                
+                document.body.appendChild(confetti);
+            }
+        }
+        
+        // Add animation for confetti
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fall {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            createConfetti();
+            
+            // Create more hearts periodically
+            setInterval(() => {
+                createHearts();
+            }, 3000);
+            
+            // Trigger confetti on click
+            document.addEventListener('click', function() {
+                createConfetti();
+            });
+        });
+    </script>
+</body>
+</html>
+    
